@@ -70,8 +70,18 @@ void draw(){
             
            
          
+          int col=0;
+          int row=0;
+          
+         
             if(clickCount==totalSlots-bombCount){
             gameState = GAME_WIN;
+               }
+               
+           else if(slot[col][row]==SLOT_BOMB){
+                
+                slot[col][row]=SLOT_BOMB;
+                gameState = GAME_LOSE;
                }
                
            
