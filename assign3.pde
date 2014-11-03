@@ -67,7 +67,34 @@ void draw(){
           break;
     case GAME_RUN:
           //---------------- put you code here ----
-
+            
+           
+         /*
+            if(clickCount==totalSlots-bombCount){
+            gameState = GAME_WIN;
+               }
+               */
+           
+            for (int col=0; col < clickCount; col++){
+             for (int row=0; row < clickCount; row++){
+               
+               
+               
+              if(slot[col][row]==SLOT_BOMB){
+                
+                slot[col][row]=SLOT_BOMB;
+                gameState = GAME_LOSE;
+               }
+                else if(clickCount==totalSlots-bombCount){
+                
+                
+                gameState = GAME_WIN;
+               }
+               }
+              }
+            
+             
+             
           // -----------------------------------
           break;
     case GAME_WIN:
@@ -97,7 +124,19 @@ void setBombs(){
   }
   // -------------- put your code here ---------
   // randomly set bombs
-
+     for (int k=1;k<=bombCount;k++){
+      int kx = int(random(4));
+      int ky = int(random(4));
+      if(slot[kx][ky] == SLOT_OFF){
+        slot[kx][ky] =SLOT_BOMB;
+        
+     } 
+      else {
+        slot[kx][ky] =SLOT_SAFE;
+       
+      }
+      //k--;
+     }
   // ---------------------------------------
 }
 
@@ -174,7 +213,24 @@ void mousePressed(){
        mouseY >= iy && mouseY <= iy+sideLength){
     
     // --------------- put you code here -------     
-
+       int MouSex=int((mouseX-ix)/SLOT_SIZE);
+       int MouSey=int((mouseY-iy)/SLOT_SIZE);
+       if (MouSex>=4){
+         MouSex=3;
+       }
+        if (MouSey>=4){
+         MouSey=3;
+       }
+       if(slot[MouSex][MouSey] == SLOT_SAFE){
+       
+         showSlot(MouSex, MouSey, SLOT_SAFE);
+        
+       gameState = GAME_RUN;
+      } 
+      else if(slot[MouSex][MouSey] ==SLOT_BOMB){
+        showSlot(MouSex, MouSey, SLOT_BOMB);
+        gameState = GAME_LOSE;
+      }
     // -------------------------
     
   }
