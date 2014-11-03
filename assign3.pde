@@ -69,12 +69,13 @@ void draw(){
           //---------------- put you code here ----
             
            
-         /*
+         
             if(clickCount==totalSlots-bombCount){
             gameState = GAME_WIN;
                }
-               */
+               
            
+           /*
             for (int col=0; col < clickCount; col++){
              for (int row=0; row < clickCount; row++){
                
@@ -93,7 +94,7 @@ void draw(){
                }
               }
             
-             
+             */
              
           // -----------------------------------
           break;
@@ -221,8 +222,9 @@ void mousePressed(){
         if (MouSey>=4){
          MouSey=3;
        }
-       if(slot[MouSex][MouSey] == SLOT_SAFE){
-       
+       if(slot[MouSex][MouSey] == SLOT_OFF ){
+         slot[MouSex][MouSey] = SLOT_SAFE;
+         
          showSlot(MouSex, MouSey, SLOT_SAFE);
         
        gameState = GAME_RUN;
